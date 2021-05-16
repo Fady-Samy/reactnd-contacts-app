@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Result from './Result';
 
 /*
 Use React and the data below to display a list of users alongside their favorite movies.
@@ -73,39 +74,50 @@ const users = {
 };
 
 const movies = {
-  1: {
+  6: {
     id: 1,
     name: 'Planet Earth 1',
   },
-  2: {
+  7: {
     id: 2,
     name: 'Selma',
   },
-  3: {
+  8: {
     id: 3,
     name: 'Million Dollar Baby',
   },
-  4: {
+  9: {
     id: 4,
     name: 'Forrest Gump',
   },
-  5: {
+  10: {
     id: 5,
     name: 'Get Out',
   },
 };
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.movieFans={};
+
+    profiles.forEach(profile=>{
+      let movieId = profile.favoriteMovieID;
+      if(this.movieFans[movieId]){
+         //check first if current movie has fans then add the user to the list
+        this.movieFans[movieId].push(profile.userID);
+      }else{
+        // else add the user to the new list
+        this.movieFans[movieId] = [profile.userID];
+      }
+    });
+  }
+
   render() {
     return (
       <div>
-      	{profiles.map(profile=>{
-         	let user = users[profile.userID].name;
-    	 	let favMovie= movies[profile.favoriteMovieID].name;
-    		return(
-        		<p key={profile.id}> {user} Favorite Movie is {favMovie}  </p>
-        	)
-      	})}
+        <Result users={users} movies={movies} movieFans={this.movieFans}/>
       </div>
     );
   }

@@ -1,27 +1,13 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Form from './Form';
 
-class App extends Component {
-  state = {
-      query: "",
-    };
-    mirror= (event)=>{
-    	this.setState({
-        	query: event.target.value,
-        })
-    };
-  render() {
+function App() {
     return (
       <div className="App">
-        <div className="container">
-          <input type="text" placeholder="Say Something" onChange={this.mirror} />
-          <p className="echo">Echo:</p>
-		      <p>{this.state.query}</p>
-        </div>
+        <h2>Shopping List</h2>
+        <Form/>
       </div>
     );
-  }
 }
 
 export default App;

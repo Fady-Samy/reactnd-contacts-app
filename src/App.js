@@ -4,7 +4,7 @@ import Form from './Form';
 function App() {
     return (
       <div className="App">
-        <h2>Shopping List</h2>
+        <h2>Users Game Played</h2>
         <Form/>
       </div>
     );

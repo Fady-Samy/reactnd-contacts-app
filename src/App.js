@@ -1,32 +1,23 @@
 import React, { Component } from 'react';
-import Game from './Game';
-import Score from './Score';
+import logo from './logo.svg';
+import './App.css';
 
 class App extends Component {
-
-  state={
-    numQuestions : 0,
-    numCorrect : 0
-  };
-
-  handleAnswer=(answerStatus)=>{
-    if(answerStatus){
-      this.setState(currState =>({
-        numCorrect: currState.numCorrect + 1,
-      }));
-    }
-    this.setState(currState =>({
-      numQuestions: currState.numQuestions + 1,
-    }));
-  };
-
+  state = {
+      query: "",
+    };
+    mirror= (event)=>{
+    	this.setState({
+        	query: event.target.value,
+        })
+    };
   render() {
     return (
       <div className="App">
-        <div className="game">
-          <h2>Mental Math</h2>
-          <Game handleAnswer = {this.handleAnswer}/>
-          <Score numCorrect={this.state.numCorrect} numQuestions={this.state.numQuestions}/>
+        <div className="container">
+          <input type="text" placeholder="Say Something" onChange={this.mirror} />
+          <p className="echo">Echo:</p>
+		      <p>{this.state.query}</p>
         </div>
       </div>
     );
